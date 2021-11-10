@@ -19,5 +19,5 @@ app.get('*', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server listening on ${PORT}. Go to http://localhost:3001/api`);
+  console.log(`Server listening on ${PORT}. Go to http://localhost:3000/api`);
 });
