@@ -1,5 +1,5 @@
 const path = require('path');
-const express = require("express");
+const express = require('express');
 
 const PORT = process.env.PORT || 3001;
 
@@ -9,8 +9,8 @@ const app = express();
 app.use(express.static(path.resolve(__dirname, '../client/build')));
 
 // Handle GET requests to /api route
-app.get("/api", (req, res) => {
-  res.json({ message: "Hello from server!" });
+app.get('/api', (req, res) => {
+  res.json({ message: 'Hello from server!' });
 });
 
 // All other GET requests not handled before will return our React app
@@ -19,5 +19,6 @@ app.get('*', (req, res) => {
 });
 
 app.listen(PORT, () => {
+  // eslint-disable-next-line no-console
   console.log(`Server listening on ${PORT}. Go to http://localhost:3000/api`);
 });

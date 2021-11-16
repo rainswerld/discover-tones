@@ -5,14 +5,11 @@ import Dropdown from './Components/Dropdown.js'
 
 
 const App = () => {
-
-  const spotify = Credentials()
-
-  const [token, setToken] = useState('')
-  const [genres, setGenres] = useState({selectedGenre: '', listOfGenresFromAPI: []})
+  const spotify = Credentials();
+  const [token, setToken] = useState('');
+  const [genres, setGenres] = useState({selectedGenre: '', listOfGenresFromAPI: []});
 
   useEffect(() => {
-
     axios('https://accounts.spotify.com/api/token', {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -37,7 +34,7 @@ const App = () => {
         })
       })
     })
-  }, [genres.selectedGenre, spotify.ClientId, spotify.ClientSecret])
+  }, [genres.selectedGenre, spotify.ClientId, spotify.ClientSecret]);
 
   return (
     <div>
@@ -45,7 +42,7 @@ const App = () => {
         <Dropdown label='Genre: ' options={genres.listOfGenresFromAPI} selectedValue={genres.selectedGenre} />
       </form>
     </div>
-  )
+  );
 }
 
 export default App;
