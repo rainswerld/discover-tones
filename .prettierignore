@@ -1,0 +1,17 @@
+.circleci/
+.github/
+.vscode/
+.snapshots/
+
+artifacts/
+build/
+dist/
+node_modules/
+
+*.iml
+*.sh
+*.min.js
+*.yaml
+*.yml
+package.json
+package-lock.json

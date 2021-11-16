@@ -4,9 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "precommit:lint-and-format": "lint-staged",
     "start": "node server/index.js",
     "build": "cd client && npm install && npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ./",
+    "lint:fix": "eslint ./ --fix",
+    "format": "prettier ./ --check",
+    "format:fix": "prettier ./ --write"
   },
   "engines": {
     "node": "16.13.0"
@@ -22,8 +27,56 @@
     "url": "https://github.com/rainswerld/discover-tones/issues"
   },
   "homepage": "https://github.com/rainswerld/discover-tones#readme",
+  "lint-staged": {
+    "*.js": [
+      "npm run lint:fix",
+      "npm run format:fix"
+    ],
+    "*.json": [
+      "npm run lint:fix",
+      "npm run format:fix"
+    ],
+    "*.jsx": [
+      "npm run lint:fix",
+      "npm run format:fix"
+    ],
+    "*.ts": [
+      "npm run lint:fix",
+      "npm run format:fix"
+    ],
+    "*.tsx": [
+      "npm run lint:fix",
+      "npm run format:fix"
+    ]
+  },
+  "pre-commit": [
+    "precommit:lint-and-format"
+  ],
   "dependencies": {
     "axios": "^0.24.0",
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/eslint-parser": "^7.16.3",
+    "@babel/plugin-transform-runtime": "^7.16.0",
+    "@babel/preset-env": "^7.16.0",
+    "@babel/preset-react": "^7.16.0",
+    "@babel/runtime": "^7.16.3",
+    "babel-eslint": "^10.1.0",
+    "babel-plugin-styled-components": "^1.13.3",
+    "eslint": "^8.2.0",
+    "eslint-config-airbnb": "^19.0.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.27.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "eslint-plugin-sort-keys-fix": "^1.1.2",
+    "lint-staged": "^12.0.2",
+    "prettier": "^2.4.1"
   }
 }
