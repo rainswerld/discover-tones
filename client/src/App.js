@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Credentials } from './spotify/creds.js';
 import axios from 'axios';
 import Dropdown from './Components/Dropdown.js';
 
 const App = () => {
-  const spotify = Credentials();
+
   const [token, setToken] = useState('');
   const [genres, setGenres] = useState({ selectedGenre: '', listOfGenresFromAPI: [] });
 
@@ -12,7 +11,7 @@ const App = () => {
     axios('https://accounts.spotify.com/api/token', {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        Authorization: 'Basic ' + btoa(spotify.ClientId + ':' + spotify.ClientSecret),
+        'Authorization': 'Basic ' + btoa(process.env.REACT_APP_SPOTIFY_ID + ':' + process.env.REACT_APP_SPOTIFY_SECRET),
       },
       data: 'grant_type=client_credentials',
       method: 'POST',
@@ -31,7 +30,7 @@ const App = () => {
         });
       });
     });
-  }, [genres.selectedGenre, spotify.ClientId, spotify.ClientSecret]);
+  }, [genres.selectedGenre, process.env.REACT_APP_SPOTIFY_ID, process.env.REACT_APP_SPOTIFY_SECRET]);
 
   return (
     <div>
