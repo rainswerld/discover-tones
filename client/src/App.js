@@ -30,7 +30,7 @@ const App = () => {
         });
       });
     });
-  }, [genres.selectedGenre, process.env.REACT_APP_SPOTIFY_ID, process.env.REACT_APP_SPOTIFY_SECRET]);
+  }, [genres.selectedGenre]);
 
   return (
     <div>
