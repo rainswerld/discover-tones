@@ -7,21 +7,27 @@ import { Input } from 'semantic-ui-react'
 
 const App = () => {
 
+  let myToken = ''
   const [token, setToken] = useState('');
   const [genres, setGenres] = useState({ selectedGenre: '', listOfGenresFromAPI: [] });
 
   const [searchInput, setSearchInput] = useState('')
+  const [searchResponse, setSearchResponse] = useState('')
 
-  const searchArtists = (searchValue) => {
-    console.log(searchValue)
+  const searchArtists = (searchValue, token) => {
+    // console.log(searchValue)
     setSearchInput(searchValue)
+    .then(searchResponse => {
+      console.log(searchResponse)
+      setSearchResponse(searchResponse)
+    })
   }
 
   useEffect(() => {
     spotifyConnect(process.env.REACT_APP_SPOTIFY_ID, process.env.REACT_APP_SPOTIFY_SECRET)
     .then(tokenResponse => {
       setToken(tokenResponse.data.access_token);
-
+      myToken = tokenResponse.data.access_token
       spotifyPlaylists(tokenResponse)
       .then(genreResponse => {
         setGenres({
@@ -38,6 +44,7 @@ const App = () => {
         <Dropdown label="Genre: " options={genres.listOfGenresFromAPI} selectedValue={genres.selectedGenre} />
         <Input icon='search' placeholder='Search...' onChange={(e) => searchArtists(e.target.value)}/>
       </form>
+      <div></div>
     </div>
   );
 };
