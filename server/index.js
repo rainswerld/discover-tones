@@ -9,6 +9,9 @@ const app = express();
 app.use(express.static(path.resolve(__dirname, '../client/build')));
 
 // Handle GET requests to /api route
+// Attempt to make a get request from Spotify API server
+// const envConfig = require('dotenv').config()
+
 app.get('/api', (req, res) => {
   res.json({ message: 'Hello from server!' });
 });
