@@ -7,7 +7,7 @@ import SearchBar from './Components/SearchBar.js'
 const App = () => {
   const [token, setToken] = useState('');
   const [genres, setGenres] = useState({ selectedGenre: '', listOfGenresFromAPI: [] });
-  const [searchTerm, setSearchTerm] = useState('')
+  // const [searchTerm, setSearchTerm] = useState('')
 
   useEffect(() => {
     spotifyConnect(process.env.REACT_APP_SPOTIFY_ID, process.env.REACT_APP_SPOTIFY_SECRET).then(tokenResponse => {
