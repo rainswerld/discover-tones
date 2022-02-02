@@ -3,12 +3,15 @@ import { artistSearch } from '../api/spotify.js'
 
 const SearchBar = props => {
   const [query, setQuery] = useState('')
+  const [searchData, setSearchData] = useState('')
 
   const onArtistSearch = event => {
     event.preventDefault()
     console.log('this is query: ' + query)
     artistSearch(query)
-    .then(res => console.log('this is response: ' + JSON.stringify(res)))
+    .then(res => JSON.stringify(res))
+    .then(jsonData => setSearchData(jsonData))
+    // .then(jsonData => console.log(jsonData))
     .catch(error => {console.log(error)})
   }
 
@@ -20,6 +23,9 @@ const SearchBar = props => {
         </label>
         <input type='submit' value='submit' />
       </form>
+      <div>
+        {searchData.data}
+      </div>
     </div>
   )
 }
